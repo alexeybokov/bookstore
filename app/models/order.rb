@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include StatesManager
+
   belongs_to :user
   belongs_to :credit_card
   belongs_to :delivery
