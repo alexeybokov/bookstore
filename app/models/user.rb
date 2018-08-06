@@ -1,8 +1,12 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
   has_many :orders
   has_many :ratings
-  belongs_to :billing_address
-  belongs_to :shipping_address
+  has_one :billing_address
+  has_one :shipping_address
   validates :name, presence: true
   validates :email, presence: true, format: { with: /.+@.+\..+/i }
 end
