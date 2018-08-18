@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
     create_table :orders do |t|
       t.decimal :total_price, precision: 5, scale: 2
       t.datetime :completed_date
-      t.string :state, default: STATE_IN_PROGRESS
+      t.string :state#, default: STATE_IN_PROGRESS
       t.integer :user_id
       t.integer :credit_card_id
       t.integer :delivery_id
