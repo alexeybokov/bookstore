@@ -39,6 +39,8 @@ gem 'transitions', require: ['transitions', 'active_model/transitions']
 gem 'devise'
 gem 'haml'
 gem 'bootstrap-sass'
+gem 'rails_admin', '~> 1.3'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
