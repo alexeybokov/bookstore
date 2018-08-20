@@ -5,4 +5,6 @@ class Book < ApplicationRecord
   has_many :order_items
 
   validates :title, :description, :price, :in_stock, presence: true
+
+  mount_uploader :cover, CoverUploader
 end

@@ -9,4 +9,9 @@ class User < ApplicationRecord
   has_one :shipping_address
   validates :name, presence: true
   validates :email, presence: true, format: { with: /.+@.+\..+/i }
+
+  def current_order
+    order = orders.find_by(state: :cart)
+  end
+
 end

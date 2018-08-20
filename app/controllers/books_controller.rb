@@ -10,6 +10,10 @@ class BooksController < ApplicationController
   def edit
   end
 
+  def show
+    @book = Book.find(params[:id])
+  end
+
   def create
     @book = Book.new(book_params)
     flash[:notice] = "#{@book.title} was created!" if @book.save
