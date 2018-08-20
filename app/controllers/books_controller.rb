@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  # load_and_authorize_resource
+
   def index
     @books = Book.all
   end
@@ -11,7 +13,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:id]).decorate
   end
 
   def create
