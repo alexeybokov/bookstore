@@ -13,20 +13,20 @@
   # Category.create(title: 'Web development')
 
 25.times do
-  Author.create!([{
+  Author.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     biography: Faker::Lorem.paragraph(3, true)
-    }])
+    )
 end
 
 25.times do
-  Book.create!([{
+  Book.create!(
     title: Faker::Book.title,
     description: Faker::Lorem.sentence(50, true).chop,
     price: Faker::Commerce.price,
     in_stock: Faker::Commerce.price(range = 1..10),
     author: Author.first,
     category: Category.last
-    }])
+    )
 end

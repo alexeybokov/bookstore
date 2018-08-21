@@ -44,7 +44,7 @@ gem 'faker'
 gem 'cancancan'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
-# gem 'fog'
+gem 'fog', '~>1.20'
 gem 'draper'
 
 group :development, :test do

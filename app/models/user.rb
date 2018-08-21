@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: /.+@.+\..+/i }
 
   def current_order
-    order = orders.find_by(state: :cart)
+    order = orders.find_or_create_by(state: :cart)
   end
 
 end

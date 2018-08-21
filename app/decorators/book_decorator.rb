@@ -11,8 +11,7 @@ class BookDecorator < ApplicationDecorator
   #   end
 
   def author_name
-    # "#{author.first_name} #{author.last_name}"
-    object.author.first_name + object.author.last_name
+    "#{author.first_name} #{author.last_name}"
   end
 
 end
