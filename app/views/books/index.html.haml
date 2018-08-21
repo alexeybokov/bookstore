@@ -18,7 +18,7 @@
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
         = link_to books_path, class: "filter-link" do
-          All
+          = t('catalog.all_categories')
           %span.badge.general-badge= Book.count
       - Category.all.each do |category|
         %li.mr-35
@@ -59,25 +59,6 @@
     - @books.each_slice(4) do |four_books|
       .row
         - four_books.each do |book|
-          .col-xs-6.col-sm-3
-            .general-thumb-wrap
-              .thumbnail.general-thumbnail
-                - if book.cover.nil?
-                  %i.fa.fa-book.fa-4x{'aria-hidden': "true"}
-                - else
-                .thumb-hover
-                  .general-thumb-link-wrap
-                    = link_to book_path(book.id), class: "thumb-hover-link" do
-                      %i.fa.fa-eye.thumb-icon{ 'aria-hidden': "true" }
-                    %a.thumb-hover-link{href: "#"}
-                      %i.fa.fa-shopping-cart.thumb-icon
-        .general-thumb-info
-          %p.title Android Programming for Beginners
-          %p.font-16.in-gold-500 €28.50
-          %span.divider-sm
-          %p.lead.small John Horton
+          = render 'shared/book', book: book.decorate
     .text-center
       %button.btn.btn-primary View More
-%script{src: "https://use.fontawesome.com/67602d7308.js"}
-%script{src: "../../javascripts/jquery.js"}
-%script{src: "../../javascripts/bootstrap.js"}
