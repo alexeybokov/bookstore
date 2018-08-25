@@ -7,14 +7,9 @@
           Newest first
           %i.fa.fa-angle-down.dropdown-icon.pull-right
         %ul.dropdown-menu
-          %li
-            %a{href: "#"} Newest first
-          %li
-            %a{href: "#"} Popular first
-          %li
-            %a{href: "#"} Price: Low to hight
-          %li
-            %a{href: "#"} Price: Hight to low
+          %li= link_to "Newest first", newest_books_path
+          %li= link_to "Price: Low to hight", price_asc_books_path
+          %li= link_to "Price: Hight to low",price_desc_books_path
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
         = link_to books_path, class: "filter-link" do

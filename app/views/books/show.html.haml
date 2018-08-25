@@ -19,7 +19,7 @@
       %p.lead.small= @book.author_name
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10= @book.price
+          %p.h1.in-gold-500.mt-10= "$ #{@book.price}"
         .col-xs-5.col-md-3
           .input-group.general-position
             %a.input-link{href: "#"}
@@ -32,7 +32,7 @@
       .general-info-wrap.divider-lg
         %p Description
         %p.lead.small.line-height-2
-          Smashing Book 5: Real-Life Responsive Web Design is our brand new, upcoming book with smart front-end techniques and design patterns derived from real-life responsive projects. With 13 chapters on responsive workflow, SVG, Flexbox, Web fonts, responsive images, responsive email, content strategy, debugging ...
+          = @book.description
           %a.in-gold-500.ml-10{href: "#"} Read More
       .general-info-wrap.divider-lg
         .clearfix
