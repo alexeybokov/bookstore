@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :ratings
   has_one :billing_address
   has_one :shipping_address
-  validates :name, presence: true
+  #validates :name, presence: true
   validates :email, presence: true, format: { with: /.+@.+\..+/i }
 
   def current_order
