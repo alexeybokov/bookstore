@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2018_08_19_195024) do
   create_table "orders", force: :cascade do |t|
     t.decimal "total_price", precision: 5, scale: 2
     t.datetime "completed_date"
-    t.string "state"
+    t.string "state", default: "in_progress"
     t.integer "user_id"
     t.integer "credit_card_id"
     t.integer "delivery_id"

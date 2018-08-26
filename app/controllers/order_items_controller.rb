@@ -1,16 +1,13 @@
 class OrderItemsController < ApplicationController
-  before_action :set_order, only: [:create, :destroy]
-  before_action :set_order_item, only: [:destroy]
-
   def create
-    @order.add_book(params)
-
-    if @order.save
-      redirect_to orders_path
-    else
-      flash[:error] = 'There was a problem adding this book to your cart.'
-      redirect_to @book
-    end
+    current_order.add_book(order_item_params)
+    redirect_to root_path
+    # if @order.save
+    #   redirect_to orders_path
+    # else
+    #   flash[:error] = 'There was a problem adding this book to your cart.'
+    #   redirect_to @book
+    # end
   end
 
   def destroy

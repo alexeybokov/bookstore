@@ -46,6 +46,7 @@ gem 'mini_magick'
 gem 'fog', '~>1.20'
 gem 'draper'
 gem 'aasm'
+gem 'pry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
