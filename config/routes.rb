@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   resources :books, only: [:index, :show]
   resources :categories, only: [:index, :show]
-  resources :order_items, only: [:index, :update, :destroy]
+  resources :order_items, only: [:index, :create, :update, :destroy]
   resources :orders, only: [:index, :create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'dashboard#index'

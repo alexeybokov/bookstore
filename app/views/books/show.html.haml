@@ -22,13 +22,14 @@
           %p.h1.in-gold-500.mt-10= "$ #{@book.price}"
         .col-xs-5.col-md-3
           .input-group.general-position
-            %a.input-link{href: "#"}
+            %p#minus.input-link
               %i.fa.fa-minus.line-height-40
             %input.form-control.quantity-input{type: "text"}
-            %a.input-link{href: "#"}
+            %p#plus.input-link
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position Add to Cart
+          %input{ type: 'hidden', value: @book.id, id: 'book-id' }
+          %button#add-to-cart.btn.btn-default.pull-right.general-position Add to Cart
       .general-info-wrap.divider-lg
         %p Description
         %p.lead.small.line-height-2
