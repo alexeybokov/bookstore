@@ -9,5 +9,16 @@ class OrderItemDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+  def price
+    "€#{object.book.price}"
+  end
+
+  def title
+    object.book.title
+  end
+
+  def subtotal
+    "€#{object.subtotal}"
+  end
 
 end
