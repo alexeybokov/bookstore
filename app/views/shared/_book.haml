@@ -1,9 +1,7 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      - if book.cover.nil?
-        %i.fa.fa-book.fa-4x{'aria-hidden': "true"}
-      - else
+      = image_tag book.image_cover_url, class: 'img-shadow general-thumbnail-img', alt: 'design-book'
       .thumb-hover
         .general-thumb-link-wrap
           = link_to book_path(book.id), class: "thumb-hover-link" do

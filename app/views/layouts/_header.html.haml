@@ -9,10 +9,12 @@
       %a.navbar-brand{href: "#{root_path}"} Bookstore
       %a.shop-link.pull-right.visible-xs{href: "#"}
         %span.shop-icon
-          %span.shop-quantity 3
+          %span.shop-quantity
+            = current_order_items_count
     %a.shop-link.pull-right.hidden-xs{href: "#{orders_path}"}
       %span.shop-icon
-        %span.shop-quantity 3
+        %span.shop-quantity
+          = current_order_items_count
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
       .visible-xs
         %button.close{type: "button", 'aria-label': "Close"}
@@ -44,7 +46,7 @@
                 %a{href: "#"} Web design
               %li.divider{role: "separator"}
               %li
-                %a{href: "#"} Log out
+                = link_to 'Log out', destroy_user_session_path, method: :delete
           %li
             %a{href: "#"} My account
           %li

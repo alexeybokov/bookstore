@@ -1,4 +1,4 @@
-class BookDecorator < ApplicationDecorator
+class OrderItemDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
@@ -9,12 +9,16 @@ class BookDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
-  def author_name
-    "#{author.first_name} #{author.last_name}"
+  def price
+    "€#{object.book.price}"
   end
 
-  def image_cover_url
-    object.cover_url(:thumb)
+  def title
+    object.book.title
   end
+
+  def subtotal
+    object.book.price * object.quantity
+  end
+
 end
