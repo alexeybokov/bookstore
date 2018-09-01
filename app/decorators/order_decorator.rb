@@ -1,24 +1,12 @@
-class OrderItemDecorator < ApplicationDecorator
+class OrderDecorator < ApplicationDecorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
-  def price
-    "€#{object.book.price}"
-  end
-
-  def title
-    object.book.title
-  end
-
   def subtotal
-    object.book.price * object.quantity
+    "€#{object.order_items.sum(&:subtotal)}"
   end
 
+  # TODO: add support for coupon
+  def total_with_coupon
+    "€#{object.order_items.sum(&:subtotal)}"
+  end
 end

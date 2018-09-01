@@ -3,14 +3,12 @@ class OrderItem < ApplicationRecord
 
   belongs_to :book
   belongs_to :order
+
   validates :quantity, presence: true
+  validates :book, presence: true
+  validates :order, presence: true
 
-  aasm column: :state do
-    state :in_cart, initial: true
-    state :in_order
-
-    event :in_order do
-      transitions from: :in_cart, to: :in_order
-    end
+  def subtotal
+    book.price * quantity
   end
 end
