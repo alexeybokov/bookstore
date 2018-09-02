@@ -22,7 +22,6 @@
             %th.col-total
               %span.in-grey-600 SubTotal
             %th.col-close
-
           - @items.each do |order_item|
             %tr{ id: "order-item-#{order_item.id}" }
               %td
@@ -48,7 +47,6 @@
               %td
                 = button_to order_item_url(order_item.id), class: 'close general-cart-close', method: :delete do
                   %span{'aria-hidden': "true"} &times;
-
   .general-order-wrap
     .row
       .col-sm-4

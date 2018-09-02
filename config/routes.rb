@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :order_items, only: [:index, :create, :update, :destroy]
   resources :orders, only: [:index, :create, :destroy]
+  resources :checkout
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'dashboard#index'
 end

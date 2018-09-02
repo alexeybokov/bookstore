@@ -15,11 +15,6 @@ ActiveRecord::Schema.define(version: 2018_08_19_195024) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "adresses", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -55,6 +50,22 @@ ActiveRecord::Schema.define(version: 2018_08_19_195024) do
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "delivery_infos", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "street_1", null: false
+    t.string "street_2"
+    t.string "city", null: false
+    t.string "region", null: false
+    t.string "country", null: false
+    t.string "zip_code", null: false
+    t.string "phone", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_delivery_infos_on_user_id"
   end
 
   create_table "order_items", force: :cascade do |t|
