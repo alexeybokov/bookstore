@@ -77,4 +77,7 @@
                 %strong.font-18
                   = @decorated_order.total_with_coupon
           %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
-  %button.btn.btn-default.mb-20.hidden-xs.center-block Checkout
+  .text-center
+    = link_to 'Checkout', checkout_path(:email_login), class: 'btn btn-default mb-20'
+  //%button.btn.btn-default.mb-20.hidden-xs.center-block Checkout
+  

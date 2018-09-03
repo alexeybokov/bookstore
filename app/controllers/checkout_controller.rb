@@ -6,14 +6,14 @@ class CheckoutController < ApplicationController
   steps :email_login, :delivery_info, :delivery, :payment, :confirm, :complete
 
   def show
-    case step
-    when :email_login then email_login
-    when :delivery_info then delivery_info
-    when :delivery then delivery
-    when :payment  then payment
-    when :confirm  then confirm
-    when :complete then complete
-    end
+  #  case step
+  #  when :email_login then email_login
+  #  when :delivery_info then delivery_info
+  #  when :delivery then delivery
+  #  when :payment  then payment
+  #  when :confirm  then confirm
+  #  when :complete then complete
+  #  end
     render_wizard
   end
 
@@ -55,6 +55,6 @@ class CheckoutController < ApplicationController
   private
 
   def ensure_any_order_items_present
-    redirect_to root_path if @items.count.zero?
+   # redirect_to root_path if @items.count.zero?
   end
 end
