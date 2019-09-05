@@ -1,0 +1,15 @@
+.general-message-wrap.divider-lg
+  .clearfix
+    %span.img-circle.logo-size.inlide-block.pull-left.logo-empty M
+    .ml-70
+      %div
+        .general-message-date.hidden-xs= rating.created_at.strftime("%d/%m/%y")
+        .max-240
+          .general-message-verified.pull-right Verified Reviewer
+          .general-message-name= (rating.decorate.owner.email ? rating.decorate.owner.email : 'John Doe')
+      .mb-15
+        - rating.rating_number.times do |i|
+          %i.fa.fa-star.rate-star
+        - (10 - rating.rating_number).times do |i|
+          %i.fa.fa-star.rate-star.rate-empty
+      %p= rating.review
