@@ -14,6 +14,8 @@ namespace :app do
                app:create_categories
                app:create_authors
                app:create_books
+               app:create_users
+               app:create_ratings
             ]
     tasks.each { |t| Rake::Task[t].invoke }
   end
@@ -33,11 +35,15 @@ namespace :app do
     create_fake_books
   end
 
-  # desc 'Create fake comments for images'
-  # task create_comments: :environment do
-  #   create_comments
-  # end
+  desc 'Create fake users'
+  task create_users: :environment do
+    create_fake_users
+  end
 
+  desc 'Create fake ratings'
+  task create_ratings: :environment do
+    create_fake_ratings
+  end
 
   # def upload_images(category_title)
   #   Dir.chdir("#{Rails.root.to_s}/lib/assets/images/#{category_title}")
@@ -52,15 +58,6 @@ namespace :app do
   #                                                                 category_id: category.id)
   #     file_img.close
   #   end
-  # end
-
-  # def create_comments
-  #   300.times do
-  #     Comment.create!(user_id: User.first.id,
-  #                     image_id: rand(1..45),
-  #                     body: Faker::Lorem.sentence(15, true).chop)
-  #   end
-  #   puts 'Create comments..................................................................................'
   # end
 
   def create_fake_categories
@@ -105,6 +102,38 @@ namespace :app do
         puts "Book: #{book.title} with price #{book.price} $, was create."
       else
         puts "Something went wrong, try to create new Book..................................................."
+      end
+    end
+  end
+
+  def create_fake_users
+    50.times do
+      user = User.new(first_name: Faker::Name.first_name,
+                      last_name: Faker::Name.last_name,
+                      email: Faker::Internet.free_email,
+                      password: Faker::Internet.password
+      )
+      if user.valid?
+         user.save
+        puts "User: #{user.first_name} #{user.last_name}, was create."
+      else
+        puts "Something went wrong, try to create new User..................................................."
+      end
+    end
+  end
+
+  def create_fake_ratings
+    500.times do
+      rating = Rating.new(review: Faker::Lorem.sentence(rand(35..100), true).chop,
+                          rating_number: rand(5..10),
+                          user_id: rand(1..50),
+                          book_id: rand(1..50)
+      )
+      if rating.valid?
+         rating.save
+        puts "Rating for random Book, was create."
+      else
+        puts "Something went wrong, try to create new Rating.................................................."
       end
     end
   end
