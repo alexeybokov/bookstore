@@ -10,8 +10,15 @@ Rails.application.routes.draw do
       get :newest
       get :price_asc
       get :price_desc
+      get :name_a_to_z
+      get :name_z_to_a
     end
   end
+
+    resources :books, only: :show do
+      resources :reviews, only: :create
+    end
+
   resources :categories, only: [:index, :show]
   resources :order_items, only: [:index, :create, :update, :destroy]
   resources :orders, only: [:index, :create, :destroy]
