@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   belongs_to :delivery, optional: true
   belongs_to :billing_address, optional: true
   belongs_to :shipping_address, optional: true
+  belongs_to :coupon
   has_many :order_items
 
   def add_book(book_params)
@@ -36,6 +37,13 @@ class Order < ApplicationRecord
     end
   end
 
-  def total_price
+  def discount
+    coupon ? coupon.discount.to_d : 0
+  end
+
+  def calc_total_price
+    return self.update(total_price: nil) if self.order_items.empty?
+    price = self.order_items.map { |item| item.quantity*item.book.price }.inject(&:+)
+    self.update(total_price: price - self.discount)
   end
 end
