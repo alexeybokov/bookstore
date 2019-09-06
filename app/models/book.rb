@@ -14,6 +14,6 @@ class Book < ApplicationRecord
   scope :newest, -> { order(created_at: :desc) }
   scope :price_asc, -> { order(:price) }
   scope :price_desc, -> { order(price: :desc) }
-  #scope :by_title_asc,  -> { order(:title) }
-  #scope :by_title_desc, -> { order(title: :desc) }
+  scope :by_title_asc,  -> { order(title: :asc) }
+  scope :by_title_desc, -> { order(title: :desc) }
 end
