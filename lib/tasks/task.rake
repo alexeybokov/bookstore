@@ -16,6 +16,7 @@ namespace :app do
                app:create_books
                app:create_users
                app:create_ratings
+               app:create_coupons
             ]
     tasks.each { |t| Rake::Task[t].invoke }
   end
@@ -43,6 +44,11 @@ namespace :app do
   desc 'Create fake ratings'
   task create_ratings: :environment do
     create_fake_ratings
+  end
+
+  desc 'Create coupons'
+  task create_coupons: :environment do
+    create_coupons
   end
 
   # def upload_images(category_title)
@@ -90,12 +96,14 @@ namespace :app do
 
   def create_fake_books
     50.times do
+      cover = File.open('app/assets/covers/' + rand(1..15).to_s + '.jpeg')
       book = Book.new(title: Faker::Book.title,
                       price: Faker::Number.decimal(2, 2),
                       description: Faker::Lorem.sentence(35, true).chop,
                       in_stock: rand(1..25),
                       author_id: rand(1..25),
-                      category_id: rand(1..25)
+                      category_id: rand(1..25),
+                      cover: cover
       )
       if book.valid?
         book.save
@@ -126,15 +134,30 @@ namespace :app do
     500.times do
       rating = Rating.new(review: Faker::Lorem.sentence(rand(35..100), true).chop,
                           rating_number: rand(5..10),
-                          user_id: rand(1..50),
-                          book_id: rand(1..50)
+                          approve: true,
+                          user_id: rand(1..35),
+                          book_id: rand(1..35)
       )
       if rating.valid?
          rating.save
         puts "Rating for random Book, was create."
       else
-        puts "Something went wrong, try to create new Rating.................................................."
+        puts "Something went wrong, try to create new Rating................................................."
       end
     end
+  end
+
+  def create_coupons
+    (1...10).each { |i|
+      coupon = Coupon.new(number: 'coupon-00000' + i.to_s,
+                          discount: i.to_s + '0'
+      )
+      if coupon.valid?
+        coupon.save
+        puts "Coupons was create."
+      else
+        puts "Something went wrong, try to create new Coupon................................................."
+      end
+    }
   end
 end
