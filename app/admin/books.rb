@@ -1,17 +1,19 @@
 ActiveAdmin.register Book do
-  permit_params :title, :description, :price, :in_stock, :author_id, :category_id,
+  permit_params :title, :description, :price, :in_stock, :cover, :author_id, :category_id
   config.per_page = 25
 
   index do
     selectable_column
     id_column
-    column :title
+    column :cover do |cover|
+      image_tag(cover.cover_url, size: '150x225')
+    end
+    column(:title) { |book| link_to(book.title, admin_book_path(book)) }
     column :description
     column :price
     column :in_stock
-    column :author_id
-    column :category_id
-    # column(:user) { |category| link_to(category.user.email, admin_image_path(category.user)) }
+    column(:author_id) { |book| book.author.first_name + ' ' + book.author.last_name }
+    column(:category_id) { |book| link_to(book.category.title, admin_all_category_path(book.category)) }
     actions
   end
 
@@ -19,8 +21,8 @@ ActiveAdmin.register Book do
     attributes_table do
       row :id
       row :title
-      row :cover do |image|
-        image_tag(image.picture_url, size: '150x100')
+      row :cover do |cover|
+        image_tag(cover.cover_url, size: '200x300')
       end
       row(:category)
       # row(:user) { |category| link_to(category.user.email, admin_user_path(category.user)) }
