@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_095754) do
+ActiveRecord::Schema.define(version: 2019_09_09_110707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 2019_09_06_095754) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "description", null: false
-    t.decimal "price", precision: 4, scale: 2, null: false
+    t.string "title"
+    t.text "description"
+    t.decimal "price", precision: 5, scale: 2, null: false
     t.integer "in_stock"
     t.integer "author_id"
     t.integer "category_id"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2019_09_06_095754) do
     t.integer "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "approve", default: false
   end
 
   create_table "street_addresses", force: :cascade do |t|
