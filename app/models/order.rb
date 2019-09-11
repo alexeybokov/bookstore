@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   belongs_to :delivery, optional: true
   belongs_to :billing_address, optional: true
   belongs_to :shipping_address, optional: true
-  belongs_to :coupon
+  has_one :coupon, optional: true
   has_many :order_items
 
   def add_book(book_params)

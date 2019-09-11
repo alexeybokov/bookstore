@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_110707) do
   create_table "coupons", force: :cascade do |t|
     t.string "number"
     t.string "discount"
+    t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

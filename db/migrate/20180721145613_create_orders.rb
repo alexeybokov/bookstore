@@ -7,6 +7,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :credit_card_id
       t.integer :delivery_id
+      t.integer :coupon_id
       t.integer :billing_address_id
       t.integer :shipping_address_id
       t.timestamps
