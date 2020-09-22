@@ -5,8 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders
   has_many :ratings
-  has_one :billing_address
-  has_one :shipping_address
-  validates :name, presence: true
+  has_one :delivery_info
+  #validates :name, presence: true
   validates :email, presence: true, format: { with: /.+@.+\..+/i }
+
+  def current_order
+    orders.find_or_create_by(state: :cart)
+  end
+
+  def load_delivery_info
+    return delivery_info if delivery_info.present?
+    build_delivery_info
+  end
 end
